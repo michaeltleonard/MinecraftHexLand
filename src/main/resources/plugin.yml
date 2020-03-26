@@ -1,0 +1,5 @@
+name: MinecraftHexLand
+main: io.github.michaeltleonard.minecrafthexland.MinecraftHexLand
+version: 0.0.1-SNAPSHOT
+author: michaeltleonard
+load: startup
