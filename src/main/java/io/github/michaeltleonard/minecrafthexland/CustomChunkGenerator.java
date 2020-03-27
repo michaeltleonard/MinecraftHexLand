@@ -30,14 +30,19 @@ public class CustomChunkGenerator extends ChunkGenerator {
                 currentBiome = getColor(chunkX*16+X, chunkZ*16+Z);
                 
                 if (currentBiome == 0) {
-                	// 0, Yellow, Sand
-                	chunk.setBlock(X, currentHeight, Z, Material.SAND);
+                	chunk.setBlock(X, currentHeight, Z, Material.YELLOW_GLAZED_TERRACOTTA);
                 } else if (currentBiome == 1) {
-                	// 1, Blue, Lapis
-                	chunk.setBlock(X, currentHeight, Z, Material.LAPIS_BLOCK);
+                	chunk.setBlock(X, currentHeight, Z, Material.GREEN_GLAZED_TERRACOTTA);
                 } else if (currentBiome == 2) {
-                	// 2, Red, Red Sandstone
-                	chunk.setBlock(X, currentHeight, Z, Material.RED_SANDSTONE);
+                	chunk.setBlock(X, currentHeight, Z, Material.PINK_GLAZED_TERRACOTTA);
+                } else if (currentBiome == 3) {
+                	chunk.setBlock(X, currentHeight, Z, Material.RED_GLAZED_TERRACOTTA);
+                } else if (currentBiome == 4) {
+                	chunk.setBlock(X, currentHeight, Z, Material.BLUE_GLAZED_TERRACOTTA);
+                } else if (currentBiome == 5) {
+                	chunk.setBlock(X, currentHeight, Z, Material.PURPLE_GLAZED_TERRACOTTA);
+                } else if (currentBiome == 6) {
+                	chunk.setBlock(X, currentHeight, Z, Material.LIGHT_BLUE_GLAZED_TERRACOTTA);
                 } else {
                 	chunk.setBlock(X, currentHeight, Z, Material.BEDROCK);
                 }
@@ -48,16 +53,28 @@ public class CustomChunkGenerator extends ChunkGenerator {
                 // Set Biome
                 for (int Y = 0; Y < 256; Y++) {
                 	if (currentBiome == 0) {
-                    	// 0, Yellow, Sand, Desert
+                    	// 0, Yellow
                 		biome.setBiome(chunkX*16+X, Y, chunkZ*16+Z, Biome.DESERT);
                     } else if (currentBiome == 1) {
-                    	// 1, Blue, Lapis, Ocean
-                    	biome.setBiome(chunkX*16+X, Y, chunkZ*16+Z, Biome.DEEP_OCEAN);
+                    	// 1, Green
+                    	biome.setBiome(chunkX*16+X, Y, chunkZ*16+Z, Biome.PLAINS);
                     } else if (currentBiome == 2) {
-                    	// 2, Red, Red Sandstone, Badland
+                    	// 2, Pink
                     	biome.setBiome(chunkX*16+X, Y, chunkZ*16+Z, Biome.BADLANDS);
+                    } else if (currentBiome == 3) {
+                    	// 3, Red
+                    	biome.setBiome(chunkX*16+X, Y, chunkZ*16+Z, Biome.MUSHROOM_FIELDS);
+                    } else if (currentBiome == 4) {
+                    	// 4, Blue
+                    	biome.setBiome(chunkX*16+X, Y, chunkZ*16+Z, Biome.ICE_SPIKES);
+                    } else if (currentBiome == 5) {
+                    	// 5, Purple
+                    	biome.setBiome(chunkX*16+X, Y, chunkZ*16+Z, Biome.WARM_OCEAN);
+                    } else if (currentBiome == 6) {
+                    	// 6, Light Blue
+                    	biome.setBiome(chunkX*16+X, Y, chunkZ*16+Z, Biome.SNOWY_TUNDRA);
                     } else {
-                    	biome.setBiome(chunkX*16+X, Y, chunkZ*16+Z, Biome.TAIGA_MOUNTAINS);
+                    	biome.setBiome(chunkX*16+X, Y, chunkZ*16+Z, Biome.DARK_FOREST);
                     }
                 }
             }
@@ -124,13 +141,28 @@ public class CustomChunkGenerator extends ChunkGenerator {
     				if ((distance < minDistance) || (minDistance < 0)) {
     					minDistance = distance;
     					
-    					// Assign a color (3 colors for now)
-    					if ((wValue % 3) == 0)
-    						minColor = 0; // Yellow, Sand
-    					else if (((wValue % 3) == 1) || ((wValue % 3) == -2))
-    						minColor = 1; // Blue, Lapis
-    					else if (((wValue % 3) == 2) || ((wValue % 3) == -1))
-    						minColor = 2; // Red, Red Sandstone
+    					// Assign a color
+    					// w - offset - (5/3)h should be a multiple of 14
+    					if (((wValue - 0 - (5*hValue/3)) % 14) == 0)
+    						minColor = 0; // Yellow
+    					
+    					else if (((wValue - 2 - (5*hValue/3)) % 14) == 0)
+    						minColor = 1; // Green
+    					
+    					else if (((wValue - 4 - (5*hValue/3)) % 14) == 0)
+    						minColor = 2; // Pink
+    					
+    					else if (((wValue - 6 - (5*hValue/3)) % 14) == 0)
+        					minColor = 3; // Red
+    					
+    					else if (((wValue - 8 - (5*hValue/3)) % 14) == 0)
+        					minColor = 4; // Blue
+    					
+    					else if (((wValue - 10 - (5*hValue/3)) % 14) == 0)
+        					minColor = 5; // Purple
+    					
+    					else if (((wValue - 12 - (5*hValue/3)) % 14) == 0)
+        					minColor = 6; // Light Blue
     				}
     				
     				//Bukkit.getLogger().info("(" + wValue + "," + hValue + ") " + valid + " " + distance);
