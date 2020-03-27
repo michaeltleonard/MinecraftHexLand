@@ -1,5 +1,7 @@
 package io.github.michaeltleonard.minecrafthexland;
 
+import java.util.Arrays;
+import java.util.List;
 import java.util.Random;
 import java.lang.Math;
 
@@ -7,11 +9,17 @@ import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.World;
 import org.bukkit.block.Biome;
+import org.bukkit.generator.BlockPopulator;
 import org.bukkit.generator.ChunkGenerator;
 import org.bukkit.util.noise.SimplexOctaveGenerator;
 
 public class CustomChunkGenerator extends ChunkGenerator {
 
+    @Override
+    public List<BlockPopulator> getDefaultPopulators(World world) {
+        return Arrays.asList((BlockPopulator)new GrassPopulator(), (BlockPopulator)new TreePopulator());
+    }
+    
     @Override
     public ChunkData generateChunkData(World world, Random random, int chunkX, int chunkZ, BiomeGrid biome) {
         int currentHeight = 50;
@@ -33,7 +41,7 @@ public class CustomChunkGenerator extends ChunkGenerator {
                 if (currentBiome == 0) {
                     chunk.setBlock(X, currentHeight, Z, Material.YELLOW_GLAZED_TERRACOTTA);
                 } else if (currentBiome == 1) {
-                    chunk.setBlock(X, currentHeight, Z, Material.GREEN_GLAZED_TERRACOTTA);
+                    chunk.setBlock(X, currentHeight, Z, Material.GRASS_BLOCK);
                 } else if (currentBiome == 2) {
                     chunk.setBlock(X, currentHeight, Z, Material.PINK_GLAZED_TERRACOTTA);
                 } else if (currentBiome == 3) {
