@@ -11,11 +11,12 @@ import org.bukkit.generator.ChunkGenerator;
 import org.bukkit.util.noise.SimplexOctaveGenerator;
 
 public class CustomChunkGenerator extends ChunkGenerator {
-    int currentHeight = 50;
-    int currentBiome = -1;
 
     @Override
     public ChunkData generateChunkData(World world, Random random, int chunkX, int chunkZ, BiomeGrid biome) {
+    	int currentHeight = 50;
+        int currentBiome = -1;
+        
     	SimplexOctaveGenerator generator = new SimplexOctaveGenerator(new Random(world.getSeed()), 8);
         ChunkData chunk = createChunkData(world);
         //generator.setScale(0.005D); // Tutorial Default
