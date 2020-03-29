@@ -1,6 +1,6 @@
 name: MinecraftHexLand
 main: io.github.michaeltleonard.minecrafthexland.MinecraftHexLand
-version: 0.0.1-SNAPSHOT
+version: 0.0.2-SNAPSHOT
 api-version: 1.15
 author: michaeltleonard
 load: startup
