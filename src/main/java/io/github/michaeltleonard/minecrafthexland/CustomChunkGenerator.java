@@ -15,10 +15,10 @@ import org.bukkit.util.noise.SimplexOctaveGenerator;
 
 public class CustomChunkGenerator extends ChunkGenerator {
 
-//    @Override
-//    public List<BlockPopulator> getDefaultPopulators(World world) {
-//        return Arrays.asList((BlockPopulator)new GrassPopulator(), (BlockPopulator)new TreePopulator());
-//    }
+    @Override
+    public List<BlockPopulator> getDefaultPopulators(World world) {
+        return Arrays.asList((BlockPopulator)new GrassPopulator(), (BlockPopulator)new TreePopulator());
+    }
     
     @Override
     public ChunkData generateChunkData(World world, Random random, int chunkX, int chunkZ, BiomeGrid biome) {
